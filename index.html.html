@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Proposal</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Comic Sans MS', cursive;
+        background-color: #ffe6f0;
+        overflow: hidden;
+    }
+
+    /* Center container */
+    .wrapper {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .card {
+        z-index: 2;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: fixed;
+        color: red;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+        z-index: 1;
+    }
+
+    @keyframes float {
+        0% {transform: translateY(110vh);}
+        100% {transform: translateY(-10vh);}
+    }
+
+    /* Panda animation */
+    .panda {
+        width: 220px;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%,100% {transform: translateY(0);}
+        50% {transform: translateY(-20px);}
+    }
+
+    h1 {
+        color: #ff0066;
+        margin: 15px 0;
+    }
+
+    button {
+        padding: 12px 25px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .yes { background-color: #ff4d6d; color: white; }
+    .no { background-color: #999; color: white; }
+
+    .yes:hover, .no:hover {
+        transform: scale(1.1);
+    }
+
+    #poetry {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #cc0066;
+        display: none;
+        padding: 0 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div class="card">
+
+        <img class="panda" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+
+        <h1 id="question">Will you be my Valentine? ❤️</h1>
+
+        <div id="buttons">
+            <button class="yes" onclick="yesClicked()">Yes</button>
+            <button class="no" onclick="noClicked()">No</button>
+        </div>
+
+        <div id="poetry">
+            <p>
+                From the moment you smiled, my world felt bright,<br>
+                You turned my darkness into shining light.<br><br>
+
+                Your laughter is music my heart loves to hear,<br>
+                With you beside me, I have nothing to fear.<br><br>
+
+                Every heartbeat whispers your name so true,<br>
+                My happiest forever begins with you ❤️
+            </p>
+
+            <button class="yes" onclick="window.location.href='tel:9958634525'">
+                Call Me 📞
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let noTexts = ["Are you sure?", "Think again..."];
+    let index = 0;
+
+    function noClicked() {
+        document.querySelector(".no").innerText = noTexts[index];
+        index = (index + 1) % noTexts.length;
+    }
+
+    function yesClicked() {
+        document.getElementById("buttons").style.display = "none";
+        document.getElementById("question").innerText = "Yayyyyy ❤️";
+        document.getElementById("poetry").style.display = "block";
+    }
+
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
